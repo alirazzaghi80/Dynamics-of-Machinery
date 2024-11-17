@@ -1,0 +1,63 @@
+clc;
+clear;
+close all;
+%**************************************************************************
+ syms w1 w2 w3 w4 w5 w6 w7 alpha1 alpha2 alpha3 alpha4 alpha5 alpha6 alpha7
+ syms a1 v1 a5 v5
+%  **************************************************************************
+
+ %% given
+ theta1=90;
+ theta2=111.5;
+ theta3=175;
+ theta4=350;
+ theta5=241.4;
+ theta6=353;
+ theta7=120;
+ r1=35;
+ r2=40.4;
+ r3=12;
+ r4=15;
+ r5=25;
+ r6=14.85;
+ r7=29.5;
+ w4=90;
+ alpha4=0;
+ w1=0;
+ alpha1=0;
+ w7=0;
+ alpha7=0;
+ a7=0;
+ v7=0;
+ %% Equations
+eqn1=-r3*w2*sind(theta3)-r4*w4*sind(theta4)==-r7*w7*sind(theta7)+ ...
+    v5*cosd(theta5)-r5*w5*sind(theta5);
+
+eqn2=r3*w2*cosd(theta3)+r4*w4*cosd(theta4)==r7*w7*cosd(theta7)+ ...
+    v5*sind(theta5)+r5*w5*cosd(theta5);
+
+eqn3=-r3*alpha2*sind(theta3)-r3*w2^2*cosd(theta3)-r4*alpha4*sind(theta4) - ...
+    r4*w4^2*cosd(theta4)==-r7*alpha7*sind(theta7)-r7*w7^2*cosd(theta7)+...
+    a5*cosd(theta5)-v5*w5*sind(theta5)-r5*alpha5*sind(theta5)-r5*w5^2*cosd(theta5);
+
+eqn4=r3*alpha3*cosd(theta3)-r3*w2^2*sind(theta3)+r4*alpha4*cosd(theta4) - ...
+    r4*w4^2*sind(theta4)==r7*alpha7*cosd(theta7)-r7*w7^2*sind(theta7)+...
+    a5*sind(theta5)+v5*w5*cosd(theta5)+r5*alpha5*cosd(theta5)-r5*w5^2*sind(theta5);
+
+% ***************************************************************************************
+
+eqn5=v1*sind(theta1)+r1*w1*cosd(theta1)+r4*w4*cosd(theta4)==r2*w2*cosd(theta2);
+
+eqn6=v1*cosd(theta1)-r1*w1*sind(theta1)-r4*w4*sind(theta4)==-r2*w2*sind(theta2);
+
+eqn7=a1*sind(theta1)+v1*w1*cosd(theta1)+v1*w1*cosd(theta1)+r1*alpha1*cosd(theta1) - ...
+    -r1*w1^2*sind(theta1)+r4*alpha4*cosd(theta4)-r4*w4^2*sind(theta4)==...
+    r2*alpha2*cosd(theta2)-r2*w2^2*sind(theta2);
+
+eqn8=a1*cosd(theta1)-v1*w1*sind(theta1)-v1*w1*sind(theta1)-r1*alpha1*sind(theta1) - ...
+    -r1*w1^2*cosd(theta1)-r4*alpha4*sind(theta4)-r4*w4^2*cosd(theta4)==...
+    -r2*alpha2*sind(theta2)-r2*w2^2*cosd(theta2);
+% eqn9=w3==w2;
+% eqn10=alpha3==alpha2;
+% ***************************************************************************************
+[v1,a1,w2,alpha2,v5,a5,alpha5,w5]=vpasolve([eqn1,eqn2,eqn3,eqn4,eqn5,eqn6,eqn7,eqn8],[v1,a1,w2,alpha2,v5,a5,alpha5,w5]);
